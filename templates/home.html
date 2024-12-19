@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 style="color: #333;">Мои заметки</h1>
+{% if posts %}
+<ul style="list-style-type: none; padding: 0;">
+    {% for post in posts %}
+    <li style="background-color: #000000; color: #ffffff; margin-bottom: 15px; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+        <h2 style="margin: 0 0 10px; color: #ffffff;">{{ post.title }}</h2>
+        <p style="color: #8de134;">{{ post.content }}</p> 
+        <a href="{{ url_for('edit_post', post_id=post.id) }}" style="color: #ffcc00; text-decoration: none; margin-right: 10px;">Редактировать</a>
+        <a href="{{ url_for('delete_post', post_id=post.id) }}" style="color: #ff4d4d; text-decoration: none;">Удалить</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p style="color: #666;">Постов пока нет.</p>
+{% endif %}
+{% endblock %}
